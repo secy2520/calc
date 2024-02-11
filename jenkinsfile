@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'docker') {
-                    sh 'docker tag calc secy2520/cal:latest'
+                    sh 'docker tag cal secy2520/cal:latest'
                     sh 'docker push secy2520/cal'
                     }
                  }
