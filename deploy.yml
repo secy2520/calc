@@ -6,7 +6,7 @@
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "secy2520/cal"
+        name: "secy2520/calcd"
         source: pull
       register: docker_pull_result
 
@@ -19,4 +19,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name calculator secy2520/cal
+      shell: docker run -it -d --name calculator secy2520/calcd
