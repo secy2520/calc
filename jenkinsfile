@@ -28,7 +28,7 @@ pipeline {
         stage('Push Docker Images') {
             steps {
                 script{
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('', 'docker') {
                     sh 'docker tag calc secy2520/calc:latest'
                     sh 'docker push secy2520/calc'
                     }
