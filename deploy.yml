@@ -1,4 +1,4 @@
----
+q---
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
   remote_user: root
@@ -6,7 +6,7 @@
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "secy2520/calcd"
+        name: "secy2520/mcal"
         source: pull
       register: docker_pull_result
 
@@ -19,4 +19,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name calculator secy2520/calcd
+      shell: docker run -it -d --name calcd.java secy2520/mcal
