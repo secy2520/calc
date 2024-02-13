@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'cald'
+        DOCKER_IMAGE_NAME = 'mcal'
         GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
     }
 
@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'docker') {
-                    sh 'docker tag calcd secy2520/calcd:latest'
-                    sh 'docker push secy2520/calcd'
+                    sh 'docker tag mcal secy2520/mcal:latest'
+                    sh 'docker push secy2520/mcal'
                     }
                  }
             }
