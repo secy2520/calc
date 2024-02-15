@@ -1,13 +1,33 @@
 pipeline {
-  agent any
-  tools {
-    maven "Maven 3.9.6"
-  }
+    agent any
 
-  stages {
-    stage('Build Artifcat') {
-      steps {
-        sh "mvn clean package -DskipTests=true"
-        archive 'target/*.jar'
-           }
-         } 
+    tools {
+        maven "MAVEN"
+        jdk "JDK"
+    }
+
+    stages {
+        stage('Initialize'){
+            steps{
+                echo "PATH = ${M2_HOME}/bin:${PATH}"
+                echo "M2_HOME = /opt/maven"
+            }
+        }
+        stage('Build') {
+            steps {
+                dir("/var/lib/jenkins/workspace/New_demo/MavenTestExample/") {
+                sh 'mvn -B -DskipTests clean package'
+                }
+            
+            }
+        }
+     }
+    post {
+       always {
+          junit(
+        allowEmptyResults: true,
+        testResults: '*/test-reports/.xml'
+      )
+      }
+   } 
+}
