@@ -4,7 +4,9 @@ pipeline {
     tools {
         maven "MAVEN"
         jdk "JDK"
-        GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
+    }
+    environment {
+         GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
     }
 
     stages {
