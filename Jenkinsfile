@@ -30,7 +30,7 @@ pipeline {
                 script {
                 dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
                 sh 'mvn clean package' 
-                sh "mvn clean test'
+                sh 'mvn clean test'
                 }
             
             }
