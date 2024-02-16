@@ -31,7 +31,7 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
                 sh 'mvn clean package' 
                 sh 'mvn clean test'
-                junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/TEST-CalculatorTest.xml'
+                //junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/TEST-CalculatorTest.xml'
                 }
             
             }
@@ -40,8 +40,6 @@ pipeline {
      }
     }    
     post {
-       always {
-           junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/*.xml'
-      }
+       
    } 
 }
