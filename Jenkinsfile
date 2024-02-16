@@ -28,7 +28,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                dir("/var/lib/jenkins/workspace/jens_pipeline/calc_t/scientific_calc") {
+                dir("/var/lib/jenkins/workspace/jens_pipeline/scientific_calc") {
                 sh 'mvn clean package' 
                 sh 'mvn clean test'
          
