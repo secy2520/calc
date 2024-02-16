@@ -31,6 +31,7 @@ pipeline {
                 dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
                 sh 'mvn clean package' 
                 sh 'mvn clean test'
+                junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/*.xml'
                 }
             
             }
