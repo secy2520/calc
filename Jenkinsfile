@@ -37,7 +37,7 @@ pipeline {
             steps {
             script {
                 sh 'mvn test'
-                junit 'tests/results/*.xml'
+              
             }
         } 
      }
