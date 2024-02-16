@@ -40,7 +40,7 @@ pipeline {
     }    
     post {
        always {
-           junit '**/reports/junit/*.xml'
+           junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/*.xml'
       }
    } 
 }
