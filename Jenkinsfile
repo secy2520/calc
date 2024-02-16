@@ -28,10 +28,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
+                dir("/var/lib/jenkins/workspace/jens_pipeline/calc_t/") {
                 sh 'mvn clean package' 
                 sh 'mvn clean test'
-                //junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/TEST-CalculatorTest.xml'
+         
                 }
             
             }
