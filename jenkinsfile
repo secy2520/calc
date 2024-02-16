@@ -1,13 +1,16 @@
 pipeline {
     agent any
 
+    tools {
+        maven "MAVEN"
+        jdk "JDK"
+    }
     environment {
-        DOCKER_IMAGE_NAME = 'mcal'
-        GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
+         GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
     }
 
     stages {
-        stage('Checkout') {
+          stage('Checkout') {
             steps {
                 script {
                     // Checkout the code from the GitHub repository
@@ -16,36 +19,35 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Initialize'){
+            steps{
+                echo "PATH = ${M2_HOME}/bin:${PATH}"
+                echo "M2_HOME = /opt/maven"
+            }
+        }
+        stage('Build') {
             steps {
-                script {
-                    // Build Docker image
-                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                dir("/var/lib/jenkins/workspace/New_mvn/MavenTestExample/") {
+                sh 'mvn -B -DskipTests clean package'
                 }
+            
             }
         }
-
-        stage('Push Docker Images') {
+        stage('Test') {
             steps {
-                script{
-                    docker.withRegistry('', 'docker') {
-                    sh 'docker tag mcal secy2520/mcal:latest'
-                    sh 'docker push secy2520/mcal'
-                    }
-                 }
+            script {
+                sh 'mvn test'
+                junit 'tests/results/*.xml'
             }
-        }
-
-   stage('Run Ansible Playbook') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                        playbook: 'deploy.yml',
-                        inventory: 'inventory'
-                     )
-                }
-            }
-        }
-
-    }
+        } 
+     }
+     }
+    post {
+       always {
+          junit(
+        allowEmptyResults: true,
+        testResults: '*/test-reports/.xml'
+      )
+      }
+   } 
 }
