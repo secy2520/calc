@@ -43,7 +43,11 @@ pipeline {
                 script {
                     def gitHubCredentials = credentials('git_pass')  // Use the credentials ID you created
                     def gitHubRepoURL = 'https://github.com/secy2520/calc.git'
-                
+            
+    sh '''
+    git config --global user.name "secy2520"
+    git config --global user.password "Jass29650"
+    '''
 
 
                     // Copy the JAR file to the cloned repository
