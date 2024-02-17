@@ -41,13 +41,15 @@ pipeline {
      stage('Pushing jar file to GitHub') {
             steps {
                 script {
-                    def gitHubCredentials = credentials('git_pass')  // Use the credentials ID you created
+                    def gitHubCredentials = credentials('git_pass1')  // Use the credentials ID you created
                     def gitHubRepoURL = 'https://github.com/secy2520/calc.git'
             
+    withCredentials([usernamePassword(credentialsId: 'git_pass1', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
     sh '''
-    git config --global user.name "secy2520"
-    git config --global user.password "Jass@9650"
+    git config --global user.name "${GIT_USERNAME}"
+    git config --global user.password "${GIT_PASSWORD}"
     '''
+}
 
 
                     // Copy the JAR file to the cloned repository
