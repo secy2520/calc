@@ -39,35 +39,22 @@ pipeline {
             }
         }
         }
-     stage('Pushing jar file to GitHub') {
+     stage('Build Docker Image') {
             steps {
                 script {
-                    def gitHubCredentials = credentials('git_pass1')  // Use the credentials ID you created
-                    def gitHubRepoURL = 'https://github.com/secy2520/calc.git'
-            
-    withCredentials([usernamePassword(credentialsId: 'git_pass1', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-    sh '''
-    cd /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/
-    ls -la  # List files to check if the JAR file is prese
-    
-    git config --global user.name "${GIT_USERNAME}"
-    git config --global user.password "${GIT_PASSWORD}"
-    git config --global user.email "sadana.jass.2520@gmail.com"
-    git add -f scientific_calc-1.0-SNAPSHOT.jar
-    git commit -m "Adding new JAR file"
-    git push origin main
-    '''
-}
-
-
-                    // Copy the JAR file to the cloned repository
-                   // sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar ./'
-
-                    // Commit and push changes
-                    //sh 'git add scientific_calc-1.0-SNAPSHOT.jar'
-                    //sh 'git commit -m "Adding new JAR file"'
-                    //sh 'git push origin main'
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
                 }
+            }
+        }
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    docker.withRegistry('', 'docker') {
+                    sh 'docker tag scientific_calculator secy2520/scientifc_calculator:latest'
+                    sh 'docker push secy2520/scientific_calculator'
+                    }
+                 }
             }
         }
     
