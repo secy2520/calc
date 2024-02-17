@@ -1,4 +1,4 @@
-q---
+---
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
   remote_user: root
@@ -19,4 +19,4 @@ q---
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name calcd.java secy2520/scientific_calculator
+      shell: docker run -it -d --name scientific_calculator secy2520/scientific_calculator
