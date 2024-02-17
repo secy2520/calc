@@ -31,7 +31,7 @@ pipeline {
                 script {
                 dir("/var/lib/jenkins/workspace/jens_pipeline/scientific_calc") {
                 sh 'mvn clean package' 
-                sh 'mvn clean test'
+                sh 'mvn test'
          
                 }
             
