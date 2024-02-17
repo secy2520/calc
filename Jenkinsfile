@@ -4,7 +4,7 @@ pipeline {
     tools {
         maven "MAVEN"
         jdk "JDK"
-        git "GIT"
+        git "Default"
     }
     environment {
          DOCKER_IMAGE_NAME = 'scientific_calculator'
