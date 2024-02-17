@@ -4,6 +4,7 @@ pipeline {
     tools {
         maven "MAVEN"
         jdk "JDK"
+        git "GIT"
     }
     environment {
          DOCKER_IMAGE_NAME = 'scientific_calculator'
@@ -48,6 +49,10 @@ pipeline {
     sh '''
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
+    'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar .'
+    'git add scientific_calc-1.0-SNAPSHOT.jar'
+    'git commit -m "Adding new JAR file"'
+    'git push origin main'"
     '''
 }
 
@@ -56,9 +61,9 @@ pipeline {
                     sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar .'
 
                     // Commit and push changes
-                    sh 'git add scientific_calc-1.0-SNAPSHOT.jar'
-                    sh 'git commit -m "Adding new JAR file"'
-                    sh 'git push origin main'
+                    //sh 'git add scientific_calc-1.0-SNAPSHOT.jar'
+                    //sh 'git commit -m "Adding new JAR file"'
+                    //sh 'git push origin main'
                 }
             }
         }
