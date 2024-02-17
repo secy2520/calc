@@ -51,7 +51,7 @@ pipeline {
 
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
-    'cp  ./scientific_calc-1.0-SNAPSHOT.jar .'
+    'cp  ./scientific_calc-1.0-SNAPSHOT.jar ./'
     'git add scientific_calc-1.0-SNAPSHOT.jar'
     'git commit -m "Adding new JAR file"'
     'git push origin main'"
@@ -60,7 +60,7 @@ pipeline {
 
 
                     // Copy the JAR file to the cloned repository
-                    sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar .'
+                   // sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar ./'
 
                     // Commit and push changes
                     //sh 'git add scientific_calc-1.0-SNAPSHOT.jar'
