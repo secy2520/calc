@@ -47,11 +47,11 @@ pipeline {
             
     withCredentials([usernamePassword(credentialsId: 'git_pass1', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
     sh '''
-    ls /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar
+    cd /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/
 
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
-    'cp  /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar .'
+    'cp  ./scientific_calc-1.0-SNAPSHOT.jar .'
     'git add scientific_calc-1.0-SNAPSHOT.jar'
     'git commit -m "Adding new JAR file"'
     'git push origin main'"
