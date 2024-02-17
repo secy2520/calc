@@ -46,7 +46,7 @@ pipeline {
             
     sh '''
     git config --global user.name "secy2520"
-    git config --global user.password "Jass29650"
+    git config --global user.password "Jass@9650"
     '''
 
 
