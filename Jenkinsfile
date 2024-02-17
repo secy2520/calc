@@ -51,8 +51,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'docker') {
-                    sh 'docker tag scientific_calculator secy2520/scientifc_calculator:latest'
-                    sh 'docker push secy2520/scientific_calculator:latest'
+                    sh 'docker tag scientific_calculator secy2520/scientific_calculator:latest'
+                    sh 'docker push secy2520/scientific_calculator'
                     }
                  }
             }
