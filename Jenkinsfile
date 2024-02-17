@@ -45,7 +45,7 @@ pipeline {
                     def gitHubRepoURL = 'https://github.com/secy2520/calc.git'
 
                     // Copy the JAR file to the cloned repository
-                    sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar .'
+                    sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar .'
 
                     // Commit and push changes
                     sh 'git add scientific_calc-1.0-SNAPSHOT.jar'
