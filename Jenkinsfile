@@ -45,8 +45,6 @@ pipeline {
                     def gitHubRepoURL = 'https://github.com/secy2520/calc.git'
                 
 
- sh 'git config --global user.email "sadana.jass.2520@gmail.com"'
- sh 'git config --global user.name "Jass Sadana"'
 
                     // Copy the JAR file to the cloned repository
                     sh 'cp /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/*.jar .'
