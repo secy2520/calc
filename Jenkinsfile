@@ -49,7 +49,7 @@ pipeline {
     sh '''
     cd /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/
     ls -la  # List files to check if the JAR file is prese
-    cp scientific_calc-1.0-SNAPSHOT.jar ./
+    
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
     git add scientific_calc-1.0-SNAPSHOT.jar
