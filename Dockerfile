@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 # Update the package list and install curl
 RUN apt-get update && apt-get install -y curl
