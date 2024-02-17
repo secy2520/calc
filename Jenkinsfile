@@ -47,6 +47,8 @@ pipeline {
             
     withCredentials([usernamePassword(credentialsId: 'git_pass1', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
     sh '''
+    ls /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar
+
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
     'cp  /var/lib/jenkins/workspace/jens_pipeline/scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar .'
