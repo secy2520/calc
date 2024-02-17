@@ -52,6 +52,7 @@ pipeline {
     
     git config --global user.name "${GIT_USERNAME}"
     git config --global user.password "${GIT_PASSWORD}"
+    git config --global user.email "sadana.jass.2520@gmail.com"
     git add -f scientific_calc-1.0-SNAPSHOT.jar
     git commit -m "Adding new JAR file"
     git push origin main
