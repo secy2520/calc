@@ -27,27 +27,21 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir("/var/lib/jenkins/workspace/New_mvn/MavenTestExample/") {
-                sh 'mvn -B -DskipTests clean package'
+                script {
+                dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
+                sh 'mvn clean package' 
+                sh 'mvn clean test'
+                junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/TEST-CalculatorTest.xml'
                 }
             
             }
         }
-        stage('Test') {
-            steps {
-            script {
-                sh 'mvn test'
-                junit 'tests/results/*.xml'
-            }
-        } 
+       
      }
-     }
+    }    
     post {
        always {
-          junit(
-        allowEmptyResults: true,
-        testResults: '*/test-reports/.xml'
-      )
+           junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/*.xml'
       }
    } 
 }
