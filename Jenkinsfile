@@ -30,7 +30,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 script {
-                dir("/var/lib/jenkins/workspace/jens_pipeline/scientific_calc") {
+                dir("/var/lib/jenkins/workspace/jenkins_pipeline/scal") {
                 sh 'mvn clean package' 
                 //sh 'mvn test'
          
