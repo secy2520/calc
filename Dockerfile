@@ -1,7 +1,7 @@
 FROM openjdk:11-jre-slim
 
 
-COPY scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar /app/scientific_calc-1.0-SNAPSHOT.jar
+COPY scal/target/scal-1.0-SNAPSHOT.jar /app/scal-1.0-SNAPSHOT.jar
 
 
 
