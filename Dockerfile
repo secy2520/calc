@@ -1,13 +1,7 @@
-FROM ubuntu:latest
+FROM openjdk:11-jre-slim
 
-# Install OpenJDK (adjust the version if needed)
-RUN apt-get update && apt-get install -y openjdk
 
-# Copy the Java source code into the container
-ADD calcd.java /app/calcd.java
-
-# Compile the Java source code
-RUN javac /app/calcd.java
+COPY scientific_calc/target/scientific_calc-1.0-SNAPSHOT.jar /app/scientific_calc-1.0-SNAPSHOT.jar
 
 
 

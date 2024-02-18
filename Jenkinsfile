@@ -4,8 +4,10 @@ pipeline {
     tools {
         maven "MAVEN"
         jdk "JDK"
+        git "Default"
     }
     environment {
+         DOCKER_IMAGE_NAME = 'scientific_calculator'
          GITHUB_REPO_URL = 'https://github.com/secy2520/calc.git'
     }
 
@@ -25,23 +27,49 @@ pipeline {
                 echo "M2_HOME = /opt/maven"
             }
         }
-        stage('Build') {
+        stage('Build and Test') {
             steps {
                 script {
-                dir("/var/lib/jenkins/workspace/New_maven/calc_t/") {
+                dir("/var/lib/jenkins/workspace/jens_pipeline/scientific_calc") {
                 sh 'mvn clean package' 
-                sh 'mvn clean test'
-                junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/TEST-CalculatorTest.xml'
+                //sh 'mvn test'
+         
                 }
             
             }
         }
+        }
+     stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
+            }
+        }
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    docker.withRegistry('', 'docker') {
+                    sh 'docker tag scientific_calculator secy2520/scientific_calculator:latest'
+                    sh 'docker push secy2520/scientific_calculator'
+                    }
+                 }
+            }
+        }
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                     )
+                }
+            }
+        }
+    
        
      }
     }    
-    post {
-       always {
-           junit '/var/lib/jenkins/workspace/New_maven/calc_t/target/surefire-reports/*.xml'
-      }
-   } 
-}
+    
+
