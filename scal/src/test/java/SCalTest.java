@@ -83,6 +83,13 @@ public class SCalTest {
         Assertions.assertEquals(0.5, result);
     }
 
-    // Add more test cases for other operations as needed
+    @Test
+    public void testpower2() {
+
+        Scientific_calc calculator = new Scientific_calc();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            calculator.power(0, 0);
+        });
+    }
 
 }
