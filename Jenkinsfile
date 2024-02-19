@@ -32,7 +32,7 @@ pipeline {
                 script {
                 dir("/var/lib/jenkins/workspace/jenkins_pipeline/scal") {
                 sh 'mvn clean package' 
-                //sh 'mvn test'
+                sh 'mvn test'
          
                 }
             
