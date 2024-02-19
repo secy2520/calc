@@ -53,21 +53,7 @@ class calc {
         int prod =1;
         if(a==0 && b==0)
             throw new IllegalArgumentException("Number and power both can't be 0 simultaneously");
-//        if(b >=0) {
-//            for (int i = 1; i <= b+1; i++) {
-//                prod *= a;
-//            }
-//            return a;
-//        }
-//        else
-//        {
-//
-//            for(int i=1;i<=b;i++)
-//            {
-//                prod*=(1/a);
-//            }
-//        }
-//        return  prod;
+
         int c =(int)a;
         return Math.pow(c,b);
     }
